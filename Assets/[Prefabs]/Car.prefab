@@ -1,5 +1,51 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1048401779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1048401780}
+  - component: {fileID: 1048401781}
+  m_Layer: 0
+  m_Name: ProximitySensor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1048401780
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048401779}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.45, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3784163181241728284}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1048401781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048401779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77fded6a1d87ad4699c2de21b7fc16c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensorA: 0
+  sensorB: 0
+  sensorC: 0
 --- !u!1 &1918569307
 GameObject:
   m_ObjectHideFlags: 0
@@ -39,9 +85,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1561804935030726314}
-  - component: {fileID: 4020113522346353771}
   m_Layer: 0
-  m_Name: RoadTracker_L
+  m_Name: RoadTracker_FL
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -54,25 +99,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 327509482079011982}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.9, y: 0.5, z: 1.742}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 3784163181241728284}
+  m_Father: {fileID: 3212816771181922504}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4020113522346353771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 327509482079011982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b7255325ecf37a4db4b0cd64eb68d6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &370718867749494209
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,8 +381,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1561804935030726314}
-  - {fileID: 3384567877553602432}
+  - {fileID: 3212816771181922504}
+  - {fileID: 1048401780}
   m_Father: {fileID: 3116622418993149246}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -526,6 +559,7 @@ GameObject:
   - component: {fileID: 3345573251946387280}
   - component: {fileID: 3118975826879974324}
   - component: {fileID: 3118975826879974315}
+  - component: {fileID: 1256784905856862702}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -647,6 +681,24 @@ MonoBehaviour:
   frontRightWheeTransform: {fileID: 3116588909492843552}
   rearLeftWheelTransform: {fileID: 3125239844126832568}
   rearRightWheelTransform: {fileID: 3116964628114041926}
+--- !u!114 &1256784905856862702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3118975826879974326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a6b61d711b9c724da31cd55783fe2b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensor: {fileID: 1048401781}
+  timeSinceStart: 0
+  overallFitness: 0
+  distanceMultiplier: 1.4
+  averageSpeedMultiplier: 0.2
+  sensorMultiplier: 0
 --- !u!1 &3119074327696145868
 GameObject:
   m_ObjectHideFlags: 0
@@ -1684,9 +1736,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3384567877553602432}
-  - component: {fileID: 8195913093745357054}
   m_Layer: 0
-  m_Name: RoadTracker_R
+  m_Name: RoadTracker_FR
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1699,25 +1750,61 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4466105087152450773}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.9, y: 0.5, z: 1.742}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 3784163181241728284}
+  m_Father: {fileID: 3212816771181922504}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8195913093745357054
+--- !u!1 &4969487554829929462
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3212816771181922504}
+  - component: {fileID: 4316992158206359182}
+  m_Layer: 0
+  m_Name: RoadTracker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3212816771181922504
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4969487554829929462}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1561804935030726314}
+  - {fileID: 3384567877553602432}
+  m_Father: {fileID: 3784163181241728284}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4316992158206359182
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4466105087152450773}
+  m_GameObject: {fileID: 4969487554829929462}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b7255325ecf37a4db4b0cd64eb68d6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trackers:
+  - {fileID: 1561804935030726314}
+  - {fileID: 3384567877553602432}
 --- !u!1 &6726382840928785135
 GameObject:
   m_ObjectHideFlags: 0

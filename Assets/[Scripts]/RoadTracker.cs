@@ -3,17 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RoadTracker : MonoBehaviour {
-    RaycastHit hit;
+    [SerializeField] private List<Transform> trackers;
+
+    private RaycastHit hit;
     
-    private void FixedUpdate() {
-        Debug.DrawRay(transform.position, Vector3.down);
+    public bool IsTrackersOnRoad() {
+        bool isOnRoad = true;
 
-        Ray ray = new Ray(transform.position, Vector3.down);
+        trackers.ForEach(tracker => {
+            Debug.DrawRay(tracker.position, Vector3.down);
 
-        if (Physics.Raycast(ray, out hit, 2f)) {
-            if (!hit.transform.CompareTag("Road")) {
-                Debug.Log("Out Of Track. Restarting...");
+            Ray ray = new Ray(tracker.position, Vector3.down);
+
+            if (Physics.Raycast(ray, out hit, 2f)) {
+                if (!hit.transform.CompareTag("Road")) {
+                    isOnRoad = false;
+                }
             }
-        }
+        });
+
+        return isOnRoad;
     }
 }
