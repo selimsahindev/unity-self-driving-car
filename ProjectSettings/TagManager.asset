@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Road
+  - Grass
+  - Sidewalk
   layers:
   - Default
   - TransparentFX
