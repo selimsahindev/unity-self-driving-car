@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ProximitySensor : MonoBehaviour {
+    [SerializeField] private float sensorRange = 10f;
+
     [HideInInspector] public float sensorA, sensorB, sensorC;
 
     private void FixedUpdate() {
@@ -10,33 +12,41 @@ public class ProximitySensor : MonoBehaviour {
     }
 
     private void InputSensors() {
-        Vector3 a = transform.forward - transform.right;
-        Vector3 b = transform.forward;
-        Vector3 c = transform.forward + transform.right;
+        Vector3 a = (transform.forward - transform.right).normalized;
+        Vector3 b = (transform.forward).normalized;
+        Vector3 c = (transform.forward + transform.right).normalized;
 
         RaycastHit hit;
         Ray ray = new Ray(transform.position, a);
 
-        Debug.DrawRay(transform.position, a);
-        Debug.DrawRay(transform.position, b);
-        Debug.DrawRay(transform.position, c);
-
-        if (Physics.Raycast(ray, out hit)) {
+        if (Physics.Raycast(ray, out hit, sensorRange)) {
             sensorA = hit.distance / 20f;
+            print("A: " + hit.transform.tag);
+            Debug.DrawLine(transform.position, transform.position + a * sensorRange, Color.green);
+        } else {
+            Debug.DrawLine(transform.position, transform.position + a * sensorRange, Color.red);
         }
 
         ray.direction = b;
 
-        if (Physics.Raycast(ray, out hit)) {
+        if (Physics.Raycast(ray, out hit, sensorRange)) {
             sensorB = hit.distance / 20f;
+            print("B: " + hit.transform.tag);
+            Debug.DrawLine(transform.position, transform.position + b * sensorRange, Color.green);
+        } else {
+            Debug.DrawLine(transform.position, transform.position + b * sensorRange, Color.red);
         }
 
         ray.direction = c;
 
-        if (Physics.Raycast(ray, out hit)) {
+        if (Physics.Raycast(ray, out hit, sensorRange)) {
             sensorC = hit.distance / 20f;
+            print("C: " + hit.transform.tag);
+            Debug.DrawLine(transform.position, transform.position + c * sensorRange, Color.green);
+        } else {
+            Debug.DrawLine(transform.position, transform.position + c * sensorRange, Color.red);
         }
 
-        print("Sensor A: " + sensorA + "Sensor B: " + sensorB + "Sensor C: " + sensorC);
+        print("A: " + sensorA + "B: " + sensorB + "C: " + sensorC);
     }
 }

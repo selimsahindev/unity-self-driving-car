@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1048401780}
   - component: {fileID: 1048401781}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ProximitySensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f77fded6a1d87ad4699c2de21b7fc16c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sensorRange: 10
   sensorA: 0
   sensorB: 0
   sensorC: 0
@@ -55,7 +56,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1918569308}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CameraPosition
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -85,7 +86,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1561804935030726314}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RoadTracker_FL
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
@@ -116,7 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 370718867749494208}
   - component: {fileID: 370718867749494215}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WheelCollider_FL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 370718867901418978}
   - component: {fileID: 370718867901418977}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WheelCollider_FR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +241,7 @@ GameObject:
   m_Component:
   - component: {fileID: 370718868226026326}
   - component: {fileID: 370718868226026325}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WheelCollider_RL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -302,7 +303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 370718868696194374}
   - component: {fileID: 370718868696194373}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WheelCollider_RR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,7 +364,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3784163181241728284}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sensors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -397,7 +398,7 @@ GameObject:
   - component: {fileID: 3116499148941650456}
   - component: {fileID: 3114638404719822632}
   - component: {fileID: 3106369478273978302}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Calliper_RR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -476,7 +477,7 @@ GameObject:
   - component: {fileID: 3125217906820602442}
   - component: {fileID: 3114697925816085602}
   - component: {fileID: 3106763913806224230}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Susp_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -560,7 +561,7 @@ GameObject:
   - component: {fileID: 3118975826879974324}
   - component: {fileID: 3118975826879974315}
   - component: {fileID: 1256784905856862702}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -669,7 +670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6c408c33a7a11845a948cc67964e529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autonomousDrivingMode: 1
+  autonomousDrivingMode: 0
   motorForce: 450
   breakForce: 450
   maxSteerAngle: 30
@@ -702,7 +703,7 @@ MonoBehaviour:
   overallFitness: 0
   distanceMultiplier: 1.4
   averageSpeedMultiplier: 0.2
-  sensorMultiplier: 0
+  sensorMultiplier: 0.1
 --- !u!1 &3119074327696145868
 GameObject:
   m_ObjectHideFlags: 0
@@ -714,7 +715,7 @@ GameObject:
   - component: {fileID: 3125239844126832568}
   - component: {fileID: 3115276361887308420}
   - component: {fileID: 3105901398243731838}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Tire_RL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -798,7 +799,7 @@ GameObject:
   - component: {fileID: 3117053717569454214}
   - component: {fileID: 3114707784540978100}
   - component: {fileID: 3106570870137756786}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Calliper_RF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -877,7 +878,7 @@ GameObject:
   - component: {fileID: 3116731471947763656}
   - component: {fileID: 3114706013467297032}
   - component: {fileID: 3106466142336426388}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TRV6_Wheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -957,7 +958,7 @@ GameObject:
   - component: {fileID: 3116857035367437956}
   - component: {fileID: 3114464479620306190}
   - component: {fileID: 3107434053894281706}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Chev_Wing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1036,7 +1037,7 @@ GameObject:
   - component: {fileID: 3125303667037931164}
   - component: {fileID: 3114642353313874254}
   - component: {fileID: 3106517060116868706}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Calliper_LR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1115,7 +1116,7 @@ GameObject:
   - component: {fileID: 3125402015938471308}
   - component: {fileID: 3114461524566474902}
   - component: {fileID: 3106601248516392106}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Chev_Hood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1195,7 +1196,7 @@ GameObject:
   - component: {fileID: 3116588909492843552}
   - component: {fileID: 3114351378517343886}
   - component: {fileID: 3105851592804891276}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Tire_FR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1278,7 +1279,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3116843800999745712}
   - component: {fileID: 3146652809287897966}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Tires
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1328,7 +1329,7 @@ GameObject:
   - component: {fileID: 3116964628114041926}
   - component: {fileID: 3113853901785035778}
   - component: {fileID: 3106060235165379612}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Tire_RR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1412,7 +1413,7 @@ GameObject:
   - component: {fileID: 3125061601050875930}
   - component: {fileID: 3114249484967761008}
   - component: {fileID: 3106443927774530390}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Calliper_LF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1491,7 +1492,7 @@ GameObject:
   - component: {fileID: 3117038616356952238}
   - component: {fileID: 3114329083127069990}
   - component: {fileID: 3105970019618394144}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Tire_FL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1575,7 +1576,7 @@ GameObject:
   - component: {fileID: 3116495819547065194}
   - component: {fileID: 3113844651735257038}
   - component: {fileID: 3105850736594100576}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Susp_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1654,7 +1655,7 @@ GameObject:
   - component: {fileID: 3125230816960984192}
   - component: {fileID: 3113869441703605590}
   - component: {fileID: 3107472563625923218}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Chev_Carbody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1740,7 +1741,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3384567877553602432}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RoadTracker_FR
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
@@ -1771,7 +1772,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3212816771181922504}
   - component: {fileID: 4316992158206359182}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RoadTracker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1818,7 +1819,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7903930705446174617}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CarParts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1854,7 +1855,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6462781228025424762}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CenterOfMass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
