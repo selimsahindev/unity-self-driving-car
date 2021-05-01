@@ -6,14 +6,15 @@ public class CarControllerV2 : MonoBehaviour {
     private const string HORIZONTAL = "Horizontal";
     private const string VERTICAL = "Vertical";
 
+    private Rigidbody rb;
+
     private float horizontalInput;
     private float verticalInput;
     private float currentSteerAngle;
     private float currentbreakForce;
     private bool isBreaking;
 
-    private Rigidbody rb;
-
+    [SerializeField] private bool autonomousDrivingMode = false;
     [SerializeField] private float motorForce;
     [SerializeField] private float breakForce;
     [SerializeField] private float maxSteerAngle;
@@ -22,7 +23,7 @@ public class CarControllerV2 : MonoBehaviour {
     [SerializeField] private WheelCollider frontLeftWheelCollider;
     [SerializeField] private WheelCollider frontRightWheelCollider;
     [SerializeField] private WheelCollider rearLeftWheelCollider;
-    [SerializeField] private WheelCollider rearRightWheelCollider;
+    [SerializeField] private WheelCollider rearRightWheelCollider; 
 
     [SerializeField] private Transform frontLeftWheelTransform;
     [SerializeField] private Transform frontRightWheeTransform;
@@ -35,12 +36,25 @@ public class CarControllerV2 : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        GetInput();
+        if (!autonomousDrivingMode)
+            GetInput();
         HandleMotor();
         HandleSteering();
         UpdateWheels();
     }
 
+    public void Reset() {
+        rb.velocity = Vector3.zero;
+        frontLeftWheelCollider.motorTorque = 0f;
+        frontRightWheelCollider.motorTorque = 0f;
+        rearLeftWheelCollider.motorTorque = 0f;
+        rearRightWheelCollider.motorTorque = 0f;
+    }
+
+    public void Drive(float throttle, float steering) {
+        horizontalInput = steering;
+        verticalInput = (rb.velocity.magnitude >= 20f) ? 0f : throttle;
+    }
 
     private void GetInput() {
         horizontalInput = Input.GetAxis(HORIZONTAL);

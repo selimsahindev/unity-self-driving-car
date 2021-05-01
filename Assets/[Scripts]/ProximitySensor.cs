@@ -5,13 +5,21 @@ using UnityEngine;
 public class ProximitySensor : MonoBehaviour {
     [HideInInspector] public float sensorA, sensorB, sensorC;
 
-    private void SensorInputs() {
+    private void FixedUpdate() {
+        InputSensors();
+    }
+
+    private void InputSensors() {
         Vector3 a = transform.forward - transform.right;
         Vector3 b = transform.forward;
         Vector3 c = transform.forward + transform.right;
 
         RaycastHit hit;
         Ray ray = new Ray(transform.position, a);
+
+        Debug.DrawRay(transform.position, a);
+        Debug.DrawRay(transform.position, b);
+        Debug.DrawRay(transform.position, c);
 
         if (Physics.Raycast(ray, out hit)) {
             sensorA = hit.distance / 20f;

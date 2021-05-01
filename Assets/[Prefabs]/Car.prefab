@@ -669,6 +669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6c408c33a7a11845a948cc67964e529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autonomousDrivingMode: 1
   motorForce: 450
   breakForce: 450
   maxSteerAngle: 30
@@ -693,7 +694,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a6b61d711b9c724da31cd55783fe2b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  v: 0
+  h: 0
   sensor: {fileID: 1048401781}
+  roadTracker: {fileID: 4316992158206359182}
   timeSinceStart: 0
   overallFitness: 0
   distanceMultiplier: 1.4

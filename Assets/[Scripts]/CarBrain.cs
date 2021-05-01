@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CarBrain : MonoBehaviour {
+    [Range(-1f, 1f)]
+    public float v, h;
+
     public ProximitySensor sensor;
+    public RoadTracker roadTracker;
     public float timeSinceStart;
 
     // Coefficents of the speed and the distance traveled by the car in the fitness function
@@ -27,15 +31,30 @@ public class CarBrain : MonoBehaviour {
         startRotation = transform.rotation.eulerAngles;
     }
 
-    private void CalculateFitness() {
+    private void FixedUpdate() {
+        // Check if the car is off the road, reset if it does;
+        if (!roadTracker.IsTrackersOnRoad())
+            Reset();
+
+        lastPosition = transform.position;
+        timeSinceStart += Time.fixedDeltaTime;
         totalDistanceTraveled += Vector3.Distance(transform.position, lastPosition);
-        averageSpeed = totalDistanceTraveled / timeSinceStart;
+
+        // Neural Network Code Here
+        car.Drive(v, h);
+
+        CalculateFitness();
+    }
+
+    private void CalculateFitness() {
+        if (timeSinceStart > 0f)
+            averageSpeed = totalDistanceTraveled / timeSinceStart;
 
         float traveledDistanceFactor = totalDistanceTraveled * distanceMultiplier;
         float averageSpeedFactor = averageSpeed * averageSpeedMultiplier;
         float proximityFactor = ((sensor.sensorA + sensor.sensorB + sensor.sensorC) / 3f) * sensorMultiplier;
 
-        overallFitness =  + traveledDistanceFactor + averageSpeedFactor + proximityFactor;
+        overallFitness = traveledDistanceFactor + averageSpeedFactor + proximityFactor;
     }
 
     public void Reset() {
@@ -46,6 +65,7 @@ public class CarBrain : MonoBehaviour {
         overallFitness = 0f;
         transform.position = startPosition;
         transform.eulerAngles = startRotation;
+        car.Reset();
     }
 
 }
