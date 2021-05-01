@@ -47,6 +47,6 @@ public class ProximitySensor : MonoBehaviour {
             Debug.DrawLine(transform.position, transform.position + c * sensorRange, Color.red);
         }
 
-        print("A: " + sensorA + "B: " + sensorB + "C: " + sensorC);
+        //print("A: " + sensorA + "\tB: " + sensorB + "\tC: " + sensorC);
     }
 }

@@ -30,7 +30,7 @@ public class CarBrain : MonoBehaviour {
         startPosition = transform.position;
         startRotation = transform.rotation.eulerAngles;
     }
-
+    
     private void FixedUpdate() {
         // Check if the car is off the road, reset if it does;
         if (!roadTracker.IsTrackersOnRoad())

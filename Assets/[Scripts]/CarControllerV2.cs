@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class CarControllerV2 : MonoBehaviour {
+    public const float LANE_WIDTH = 4.38f;
+
     private const string HORIZONTAL = "Horizontal";
     private const string VERTICAL = "Vertical";
 
@@ -15,6 +18,8 @@ public class CarControllerV2 : MonoBehaviour {
     private bool isBreaking;
 
     [SerializeField] private bool autonomousDrivingMode = false;
+    [SerializeField] private bool speedLimit = true;
+    [SerializeField] private float maxSpeedKMH = 80f;
     [SerializeField] private float motorForce;
     [SerializeField] private float breakForce;
     [SerializeField] private float maxSteerAngle;
@@ -38,9 +43,12 @@ public class CarControllerV2 : MonoBehaviour {
     private void FixedUpdate() {
         if (!autonomousDrivingMode)
             GetInput();
+
         HandleMotor();
         HandleSteering();
         UpdateWheels();
+
+        Debug.Log(GetVelocityKMH());
     }
 
     public void Reset() {
@@ -63,8 +71,15 @@ public class CarControllerV2 : MonoBehaviour {
     }
 
     private void HandleMotor() {
-        frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
-        frontRightWheelCollider.motorTorque = verticalInput * motorForce;
+        float torque;
+        
+        if (!speedLimit || (GetVelocityKMH() < maxSpeedKMH))
+            torque = verticalInput * motorForce;
+        else
+            torque = 0f;
+
+        frontLeftWheelCollider.motorTorque = torque;
+        frontRightWheelCollider.motorTorque = torque;
         currentbreakForce = isBreaking ? breakForce : 0f;
         ApplyBreaking();
     }
@@ -94,5 +109,10 @@ public class CarControllerV2 : MonoBehaviour {
         Quaternion rot; wheelCollider.GetWorldPose(out pos, out rot);
         wheelTransform.rotation = rot;
         wheelTransform.position = pos;
+    }
+
+    private float GetVelocityKMH() {
+        // Converting m/s to km/h (1 m/s == 3.6km/h)
+        return ((rb.velocity.magnitude * LANE_WIDTH * 3.6f) / 5f);
     }
 }

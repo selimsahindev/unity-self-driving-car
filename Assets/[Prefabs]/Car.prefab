@@ -13,7 +13,7 @@ GameObject:
   m_Layer: 2
   m_Name: ProximitySensor
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1048401779}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.45, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0.45, z: 0.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3784163181241728284}
@@ -59,7 +59,7 @@ GameObject:
   m_Layer: 2
   m_Name: CameraPosition
   m_TagString: Untagged
-  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -89,7 +89,7 @@ GameObject:
   m_Layer: 2
   m_Name: RoadTracker_FL
   m_TagString: Untagged
-  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -670,7 +670,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6c408c33a7a11845a948cc67964e529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autonomousDrivingMode: 0
+  autonomousDrivingMode: 1
+  speedLimit: 1
+  maxSpeedKMH: 60
   motorForce: 450
   breakForce: 450
   maxSteerAngle: 30
@@ -1744,7 +1746,7 @@ GameObject:
   m_Layer: 2
   m_Name: RoadTracker_FR
   m_TagString: Untagged
-  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
