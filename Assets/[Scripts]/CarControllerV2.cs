@@ -48,7 +48,7 @@ public class CarControllerV2 : MonoBehaviour {
         HandleSteering();
         UpdateWheels();
 
-        Debug.Log(GetVelocityKMH());
+        //Debug.Log(GetVelocityKMH());
     }
 
     public void Reset() {
