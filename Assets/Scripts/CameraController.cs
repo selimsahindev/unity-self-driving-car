@@ -3,27 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour {
-    public Camera cam1;
-    public Camera cam2;
+    public float followTime = 0.3f;
 
-    private void Start() {
-        cam1.enabled = true;
-        cam2.enabled = false;
-    }
+    public Transform target;
+    public Transform cameraPosition;
 
-    private void Update() {
-        if (Input.GetKeyDown(KeyCode.C)) {
-            SwitchCamera();
-        }
-    }
+    private Vector3 velocity = Vector3.zero;
 
-    private void SwitchCamera() {
-        if (cam1.enabled) {
-            cam1.enabled = false;
-            cam2.enabled = true;
-        } else {
-            cam1.enabled = true;
-            cam2.enabled = false;
-        }
+    private void FixedUpdate() {
+        // Smoothly move the camera towards that target position
+        transform.position = Vector3.SmoothDamp(transform.position, cameraPosition.position, ref velocity, followTime);
+
+        transform.LookAt(target);
     }
 }
