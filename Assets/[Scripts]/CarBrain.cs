@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(NNet))]
 public class CarBrain : MonoBehaviour {
     [Range(-1f, 1f)]
     public float throttle, steering;
@@ -18,17 +19,26 @@ public class CarBrain : MonoBehaviour {
     public float averageSpeedMultiplier = 0.2f;
     public float sensorMultiplier = 0.1f;
 
+    [Header("Network Options")]
+    public int layers = 1;
+    public int neurons = 10;
+
     private float averageSpeed;
     private float totalDistanceTraveled;
     private Vector3 startPosition;
     private Vector3 startRotation;
     private Vector3 lastPosition;
     private CarControllerV2 car;
+    private NNet network;
 
     private void Awake() {
         car = GetComponent<CarControllerV2>();
         startPosition = transform.position;
         startRotation = transform.rotation.eulerAngles;
+        network = GetComponent<NNet>();
+
+        // TEST CODE
+        network.Initialize(layers, neurons);
     }
     
     private void FixedUpdate() {
@@ -36,7 +46,7 @@ public class CarBrain : MonoBehaviour {
         if (!roadTracker.IsTrackersOnRoad())
             Reset();
 
-        // Neural Network Code Here
+        (throttle, steering) = network.RunNetwork(sensor.sensorA, sensor.sensorB, sensor.sensorC);
 
         car.Drive(throttle, steering);
 
