@@ -13,7 +13,7 @@ GameObject:
   m_Layer: 2
   m_Name: ProximitySensor
   m_TagString: Untagged
-  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f77fded6a1d87ad4699c2de21b7fc16c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensorRange: 10
+  sensorRange: 20
   sensorA: 0
   sensorB: 0
   sensorC: 0
@@ -71,7 +71,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1918569307}
   m_LocalRotation: {x: 0.30070576, y: -0, z: -0, w: 0.953717}
-  m_LocalPosition: {x: 0, y: 2.5, z: -4}
+  m_LocalPosition: {x: 0, y: 3, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3116622418993149246}
@@ -89,7 +89,7 @@ GameObject:
   m_Layer: 2
   m_Name: RoadTracker_FL
   m_TagString: Untagged
-  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -561,6 +561,7 @@ GameObject:
   - component: {fileID: 3118975826879974324}
   - component: {fileID: 3118975826879974315}
   - component: {fileID: 1256784905856862702}
+  - component: {fileID: 1129611815}
   m_Layer: 2
   m_Name: Car
   m_TagString: Untagged
@@ -697,8 +698,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a6b61d711b9c724da31cd55783fe2b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  v: 0
-  h: 0
+  throttle: 0
+  steering: 0
   sensor: {fileID: 1048401781}
   roadTracker: {fileID: 4316992158206359182}
   timeSinceStart: 0
@@ -706,6 +707,22 @@ MonoBehaviour:
   distanceMultiplier: 1.4
   averageSpeedMultiplier: 0.2
   sensorMultiplier: 0.1
+  layers: 1
+  neurons: 10
+--- !u!114 &1129611815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3118975826879974326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 062fbc6684473174e994e2aa4289a602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  biases: []
+  fitness: 0
 --- !u!1 &3119074327696145868
 GameObject:
   m_ObjectHideFlags: 0
@@ -1746,7 +1763,7 @@ GameObject:
   m_Layer: 2
   m_Name: RoadTracker_FR
   m_TagString: Untagged
-  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
