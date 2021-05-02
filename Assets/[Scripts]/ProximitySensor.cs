@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ProximitySensor : MonoBehaviour {
-    [SerializeField] private float sensorRange = 10f;
+    [SerializeField] private float sensorRange = 20f;
 
     [HideInInspector] public float sensorA, sensorB, sensorC;
 
@@ -21,7 +21,6 @@ public class ProximitySensor : MonoBehaviour {
 
         if (Physics.Raycast(ray, out hit, sensorRange)) {
             sensorA = hit.distance / 20f;
-            print("A: " + hit.transform.tag);
             Debug.DrawLine(transform.position, transform.position + a * sensorRange, Color.green);
         } else {
             Debug.DrawLine(transform.position, transform.position + a * sensorRange, Color.red);
@@ -31,7 +30,6 @@ public class ProximitySensor : MonoBehaviour {
 
         if (Physics.Raycast(ray, out hit, sensorRange)) {
             sensorB = hit.distance / 20f;
-            print("B: " + hit.transform.tag);
             Debug.DrawLine(transform.position, transform.position + b * sensorRange, Color.green);
         } else {
             Debug.DrawLine(transform.position, transform.position + b * sensorRange, Color.red);
@@ -41,12 +39,11 @@ public class ProximitySensor : MonoBehaviour {
 
         if (Physics.Raycast(ray, out hit, sensorRange)) {
             sensorC = hit.distance / 20f;
-            print("C: " + hit.transform.tag);
             Debug.DrawLine(transform.position, transform.position + c * sensorRange, Color.green);
         } else {
             Debug.DrawLine(transform.position, transform.position + c * sensorRange, Color.red);
         }
 
-        //print("A: " + sensorA + "\tB: " + sensorB + "\tC: " + sensorC);
+        print("A: " + sensorA + "\tB: " + sensorB + "\tC: " + sensorC);
     }
 }

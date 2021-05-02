@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CarBrain : MonoBehaviour {
     [Range(-1f, 1f)]
-    public float v, h;
+    public float throttle, steering;
 
     public ProximitySensor sensor;
     public RoadTracker roadTracker;
@@ -36,12 +36,9 @@ public class CarBrain : MonoBehaviour {
         if (!roadTracker.IsTrackersOnRoad())
             Reset();
 
-        lastPosition = transform.position;
-        timeSinceStart += Time.fixedDeltaTime;
-        totalDistanceTraveled += Vector3.Distance(transform.position, lastPosition);
-
         // Neural Network Code Here
-        car.Drive(v, h);
+
+        car.Drive(throttle, steering);
 
         CalculateFitness();
     }
@@ -50,11 +47,26 @@ public class CarBrain : MonoBehaviour {
         if (timeSinceStart > 0f)
             averageSpeed = totalDistanceTraveled / timeSinceStart;
 
+        totalDistanceTraveled += Vector3.Distance(transform.position, lastPosition);
+        timeSinceStart += Time.fixedDeltaTime;
+
+        // This assignment should always take place after the totalDistanceTraveled calculation:
+        lastPosition = transform.position;
+
         float traveledDistanceFactor = totalDistanceTraveled * distanceMultiplier;
         float averageSpeedFactor = averageSpeed * averageSpeedMultiplier;
         float proximityFactor = ((sensor.sensorA + sensor.sensorB + sensor.sensorC) / 3f) * sensorMultiplier;
 
         overallFitness = traveledDistanceFactor + averageSpeedFactor + proximityFactor;
+
+        if (timeSinceStart > 20f && overallFitness < 40f)
+            Reset();
+
+        if (overallFitness >= 1000f) {
+            // Saves network to a JSON
+            Reset();
+        }
+
     }
 
     public void Reset() {
