@@ -1,6 +1,6 @@
-﻿using MathNet.Numerics.LinearAlgebra;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using MathNet.Numerics.LinearAlgebra;
 
 public class GeneticManager : MonoBehaviour {
     [Header("References")]
@@ -160,13 +160,13 @@ public class GeneticManager : MonoBehaviour {
     }
 
     private Matrix<float> MutateMatrix(Matrix<float> mat) {
-        int randomPoints = (int) Random.Range(1f, mat.RowCount * mat.ColumnCount / 7);
+        int randomPoints = Random.Range(1, (mat.RowCount * mat.ColumnCount) / 7);
 
         Matrix<float> temp = mat;
         
         for (int i = 0; i < randomPoints; i++) {
-            int randomColumn = (int) Random.Range(0f, temp.ColumnCount);
-            int randomRow = (int) Random.Range(0f, temp.RowCount);
+            int randomColumn = Random.Range(0, temp.ColumnCount);
+            int randomRow = Random.Range(0, temp.RowCount);
 
             temp[randomRow, randomColumn] = Mathf.Clamp(temp[randomRow, randomColumn] + Random.Range(-1f, 1f), -1f, 1f);
         }

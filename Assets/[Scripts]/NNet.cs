@@ -5,7 +5,7 @@ using MathNet.Numerics.LinearAlgebra;
 using System;
 using Random = UnityEngine.Random;
 
-public class NNet : MonoBehaviour {
+public class NNet {
     public Matrix<float> inputLayer = Matrix<float>.Build.Dense(1, 3);
 
     public List<Matrix<float>> hiddenLayers = new List<Matrix<float>>();
@@ -74,6 +74,8 @@ public class NNet : MonoBehaviour {
 
         net.weights = newWeights;
         net.biases = newBiases;
+
+        net.InitializeHidden(hiddenLayerCount, hiddenNeuronCount);
 
         return net;
     }

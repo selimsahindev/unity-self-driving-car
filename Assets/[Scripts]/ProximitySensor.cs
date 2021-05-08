@@ -52,8 +52,6 @@ public class ProximitySensor : MonoBehaviour {
             hitPointC = Vector3.zero;
             Debug.DrawLine(transform.position, transform.position + c * sensorRange, Color.red);
         }
-
-        print("A: " + sensorA + "\tB: " + sensorB + "\tC: " + sensorC);
     }
 
     private void OnDrawGizmos() {

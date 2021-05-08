@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(NNet))]
 public class CarBrain : MonoBehaviour {
     [Range(-1f, 1f)]
     public float throttle, steering;
@@ -35,7 +34,8 @@ public class CarBrain : MonoBehaviour {
         car = GetComponent<CarControllerV2>();
         startPosition = transform.position;
         startRotation = transform.rotation.eulerAngles;
-        network = GetComponent<NNet>();
+        network = new NNet();
+        network.Initialize(neurons, layers);
     }
     
     private void FixedUpdate() {
