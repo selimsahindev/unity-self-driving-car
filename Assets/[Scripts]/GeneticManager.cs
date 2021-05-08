@@ -63,7 +63,7 @@ public class GeneticManager : MonoBehaviour {
     }
 
     public void Death(float fitness, NNet network) {
-        if (currentGeneration < population.Length - 1) {
+        if (currentGenome < population.Length - 1) {
             population[currentGenome].fitness = fitness;
             currentGenome++;
             ResetToCurrentGenome();
