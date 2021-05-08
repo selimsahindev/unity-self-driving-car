@@ -51,6 +51,44 @@ public class NNet : MonoBehaviour {
         RandomizeWeights();
     }
 
+    public NNet InitializeCopy(int hiddenLayerCount, int hiddenNeuronCount) {
+        NNet net = new NNet();
+
+        List<Matrix<float>> newWeights = new List<Matrix<float>>();
+
+        for (int i = 0; i < this.weights.Count; i++) {
+            Matrix<float> currentWeight = Matrix<float>.Build.Dense(weights[i].RowCount, weights[i].ColumnCount);
+
+            for (int x = 0; x < currentWeight.RowCount; x++) {
+                for (int y = 0; y < currentWeight.ColumnCount; y++) {
+                    currentWeight[x, y] = weights[i][x, y];
+                }
+            }
+
+            newWeights.Add(currentWeight);
+        }
+
+        List<float> newBiases = new List<float>();
+
+        newBiases.AddRange(biases);
+
+        net.weights = newWeights;
+        net.biases = newBiases;
+
+        return net;
+    }
+
+    public void InitializeHidden(int hiddenLayerCount, int hiddenNeuronCount) {
+        inputLayer.Clear();
+        hiddenLayers.Clear();
+        outputLayer.Clear();
+
+        for (int i = 0; i < hiddenLayerCount + 1; i++) {
+            Matrix<float> newHiddenLayer = Matrix<float>.Build.Dense(1, hiddenLayerCount);
+            hiddenLayers.Add(newHiddenLayer);
+        }
+    }
+
     public void RandomizeWeights() {
         for (int i = 0; i < weights.Count; i++) {
             for (int x = 0; x < weights[i].RowCount; x++) {

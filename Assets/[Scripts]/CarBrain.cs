@@ -36,21 +36,21 @@ public class CarBrain : MonoBehaviour {
         startPosition = transform.position;
         startRotation = transform.rotation.eulerAngles;
         network = GetComponent<NNet>();
-
-        // TEST CODE
-        network.Initialize(layers, neurons);
     }
     
     private void FixedUpdate() {
-        // Check if the car is off the road, reset if it does;
         if (roadTracker.IsTrackersOnRoad() == false)
-            Reset();
+            Death();
 
         (throttle, steering) = network.RunNetwork(sensor.sensorA, sensor.sensorB, sensor.sensorC);
 
         car.Drive(throttle, steering);
 
         CalculateFitness();
+    }
+
+    private void Death() {
+        GeneticManager.instance.Death(overallFitness, network);
     }
 
     private void CalculateFitness() {
@@ -69,20 +69,24 @@ public class CarBrain : MonoBehaviour {
 
         overallFitness = traveledDistanceFactor + averageSpeedFactor + proximityFactor;
 
+        // The situation where it doesn't work well enough
         if (timeSinceStart > 20f && overallFitness < 40f)
-            Reset();
+            Death();
 
+        // The situation where it works well enough
         if (overallFitness >= 1000f) {
             // Saves network to a JSON
-            Reset();
+            Death();
         }
 
     }
 
-    public void Reset() {
-        // Reinitialize network every time
-        network.Initialize(layers, neurons);
+    public void ResetWithNetwork(NNet network) {
+        this.network = network;
+        Reset();
+    }
 
+    public void Reset() {
         timeSinceStart = 0f;
         totalDistanceTraveled = 0f;
         averageSpeed = 0f;
