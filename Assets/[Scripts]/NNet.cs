@@ -104,7 +104,7 @@ public class NNet : MonoBehaviour {
         inputLayer[0, 1] = b;
         inputLayer[0, 2] = c;
 
-        inputLayer.PointwiseTanh();
+        inputLayer = inputLayer.PointwiseTanh();
 
         hiddenLayers[0] = ((inputLayer * weights[0]) + biases[0]).PointwiseTanh();
 
