@@ -43,7 +43,7 @@ public class CarBrain : MonoBehaviour {
     
     private void FixedUpdate() {
         // Check if the car is off the road, reset if it does;
-        if (!roadTracker.IsTrackersOnRoad())
+        if (roadTracker.IsTrackersOnRoad() == false)
             Reset();
 
         (throttle, steering) = network.RunNetwork(sensor.sensorA, sensor.sensorB, sensor.sensorC);
@@ -80,6 +80,9 @@ public class CarBrain : MonoBehaviour {
     }
 
     public void Reset() {
+        // Reinitialize network every time
+        network.Initialize(layers, neurons);
+
         timeSinceStart = 0f;
         totalDistanceTraveled = 0f;
         averageSpeed = 0f;

@@ -77,7 +77,7 @@ public class NNet : MonoBehaviour {
         outputLayer = ((hiddenLayers[hiddenLayers.Count - 1] * weights[weights.Count - 1]) + biases[biases.Count - 1]).PointwiseTanh();
 
         // First output is throttle, second output is steering
-        return (Sigmoid(outputLayer[0, 0]), (float) Math.Tan(outputLayer[0, 1]));
+        return (Sigmoid(outputLayer[0, 0]), (float) Math.Tanh(outputLayer[0, 1]));
     }
 
     // We wrote our own Sigmoid function
